@@ -77,11 +77,7 @@ const screenshotPath = "test.jpeg";
     }
     console.log("This is before click verify");
 //    await page.locator('.bigSquare.codeButtonColor0').setTimeout(timeout).click();
-    await puppeteer.Locator.race([
-        page.locator('.bigSquare.codeButtonColor0'),
-        page.locator('text/2')
-    ])
-        .click()
+    await page.locator('.bigSquare.codeButtonColor0').filter({ hasText: '1' }).click();
     await page.screenshot({ path: screenshotPath });
     {
         const targetPage = page;
