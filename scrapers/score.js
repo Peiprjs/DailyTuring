@@ -222,6 +222,10 @@ console.log(parsed_solution);
             });
     }
     await page.screenshot({ path: screenshotPath });
+    let score = await page.$$eval('.bolder', spans => spans.map(span => span.innerText));
+    let score_machine = [score[2],score[3]]
+    let jsonified_score = JSON.stringify(score_machine);
+    console.log(jsonified_score);
     await browser.close();
 
 })().catch(err => {
