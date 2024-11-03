@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer'); // v20.7.4 or later
 const fs = require('node:fs');
-const screenshotPath = "test.jpeg";
+// const screenshotPath = "test.jpeg"; DEBUG
 //-----------------------------------Here starts the score thingy--------------------//
 const solution = JSON.parse(fs.readFileSync('../today/solution', 'utf8'))
 console.log(solution);
@@ -221,7 +221,7 @@ console.log(parsed_solution);
               },
             });
     }
-    await page.screenshot({ path: screenshotPath });
+//    await page.screenshot({ path: screenshotPath }); DEBUG
     let score = await page.$$eval('.bolder', spans => spans.map(span => span.innerText));
     let score_machine = [score[2],score[3]]
     let jsonified_score = JSON.stringify(score_machine);
