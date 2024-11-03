@@ -6,11 +6,11 @@ It runs daily at 03:00±00:05 UTC on a GitHub Runner.
 ## How to use it
 ### Endpoints
 There's 5 endpoints: 
-- criteria: This returns a JSON array with the criteria used for the selected challenge
-- verifiers: This returns a JSON array with the verifiers used for the selected challenge
-- solution: This returns a JSON array with the solution for the selected challenge
-- hash: This returns a string with the hash of today's challenge 
-- score: This returns a JSON array with the machine's score for the selected challenge
+- `criteria`: This returns a JSON array with the criteria used for the selected challenge
+- `verifiers`: This returns a JSON array with the verifiers used for the selected challenge
+- `solution`: This returns a JSON array with the solution for the selected challenge
+- `hash`: This returns a string with the hash of today's challenge 
+- `score`: This returns a JSON array with the machine's score for the selected challenge
 
 ### Time selector
 #### Get today's challenge
