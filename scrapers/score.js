@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 const fs = require('node:fs');
 // const screenshotPath = "test.jpeg"; DEBUG
 //-----------------------------------Here starts the score thingy--------------------//
-const solution = JSON.parse(fs.readFileSync('../today/solution', 'utf8'))
+const solution = JSON.parse(fs.readFileSync('today/solution', 'utf8'))
 console.log(solution);
 let parsed_solution =  [-3*solution[0]+16 ,-3*solution[1]+17 , -3*solution[2]+18];
 console.log(parsed_solution);
