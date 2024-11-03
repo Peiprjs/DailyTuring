@@ -9,7 +9,7 @@ jobs:
     name: Get the daily challenge
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v4
       with:
         persist-credentials: false 
         fetch-depth: 0 
