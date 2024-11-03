@@ -2,8 +2,7 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 const fs = require('node:fs');
 const screenshotPath = "test.jpeg";
 //-----------------------------------Here starts the score thingy--------------------//
-//const solution = JSON.parse(fs.readFileSync('../today/solution', 'utf8'))
-const solution = [5, 5, 5]
+const solution = JSON.parse(fs.readFileSync('../today/solution', 'utf8'))
 console.log(solution);
 let parsed_solution =  [-3*solution[0]+16 ,-3*solution[1]+17 , -3*solution[2]+18];
 console.log(parsed_solution);
@@ -50,6 +49,7 @@ console.log(parsed_solution);
     }
     {
         const targetPage = page;
+        console.log("Line 52")
         await puppeteer.Locator.race([
             targetPage.locator('::-p-aria(GENERATE)'),
             targetPage.locator('div.content > input'),
@@ -141,7 +141,6 @@ console.log(parsed_solution);
         .setTimeout(timeout)
         .click();}
     }//This one clicks Z
-    await page.screenshot({ path: screenshotPath });
     {
         const targetPage = page;
         await puppeteer.Locator.race([
@@ -156,6 +155,70 @@ console.log(parsed_solution);
               offset: {
                 x: 278.140625,
                 y: 19.34375,
+              },
+            });
+    }
+        {
+        const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator('::-p-aria(Did you beat the MACHINE?)'),
+            targetPage.locator('input'),
+            targetPage.locator('::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/input)'),
+            targetPage.locator(':scope >>> input'),
+            targetPage.locator('::-p-text(Did you beat)')
+        ])
+            .setTimeout(timeout)
+            .click({
+              offset: {
+                x: 225.640625,
+                y: 28.34375,
+              },
+            });
+    }
+        {
+        const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator('div.answerGrid > div:nth-of-type(2) > div:nth-of-type(1) > div > span'),
+            targetPage.locator('::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[1]/div[2]/div[1]/div/span)'),
+            targetPage.locator(':scope >>> div.answerGrid > div:nth-of-type(2) > div:nth-of-type(1) > div > span')
+        ])
+            .setTimeout(timeout)
+            .click({
+              offset: {
+                x: 24.5,
+                y: 25.34375,
+              },
+            });
+    }
+    {
+        const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator('div.answerGrid > div:nth-of-type(2) > div:nth-of-type(1) span.val1'),
+            targetPage.locator('::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[1]/div[2]/div[1]/div/div/span[2])'),
+            targetPage.locator(':scope >>> div.answerGrid > div:nth-of-type(2) > div:nth-of-type(1) span.val1')
+        ])
+            .setTimeout(timeout)
+            .click({
+              offset: {
+                x: 27.5,
+                y: 23.34375,
+              },
+            });
+    }
+    {
+        const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator('::-p-aria(Did you beat the MACHINE?)'),
+            targetPage.locator('input'),
+            targetPage.locator('::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[2]/input)'),
+            targetPage.locator(':scope >>> input'),
+            targetPage.locator('::-p-text(Did you beat)')
+        ])
+            .setTimeout(timeout)
+            .click({
+              offset: {
+                x: 123,
+                y: 23,
               },
             });
     }
