@@ -56,8 +56,9 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
               },
             });
     }  
-    const numbers = await page.$$eval('.criteria', spans => spans.map(span => span.innerText));
-    console.log(numbers);
+    const criteria = await page.$$eval('.square.green', spans => spans.map(span => span.innerText));
+    let jsonified_criteria = JSON.stringify(criteria);
+    console.log(jsonified_criteria);
     await browser.close();
 
 })().catch(err => {
