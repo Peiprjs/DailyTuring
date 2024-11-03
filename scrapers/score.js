@@ -1,6 +1,12 @@
 const puppeteer = require('puppeteer'); // v20.7.4 or later
+const fs = require('node:fs');
 const screenshotPath = "test.jpeg";
-
+//-----------------------------------Here starts the score thingy--------------------//
+const solution = JSON.parse(fs.readFileSync('../today/solution', 'utf8'))
+console.log(solution);
+let parsed_solution =  [-3*solution[0]+16 ,-3*solution[1]+17 , -3*solution[2]+18];
+console.log(parsed_solution);
+//-----------------------------------Here starts the puppet chaos--------------------//
 (async () => {
     const browser = await puppeteer.launch({headless: 'new'});
     const page = await browser.newPage();
@@ -75,9 +81,32 @@ const screenshotPath = "test.jpeg";
               },
             });
     }
+    // This is the clickey part
     console.log("This is before click verify");
-//    await page.locator('.bigSquare.codeButtonColor0').setTimeout(timeout).click();
-    await page.locator('.bigSquare.codeButtonColor0').filter({ hasText: '1' }).click();
+    {const targetPage = page;
+    await puppeteer.Locator.race([
+        targetPage.locator(`span:nth-of-type(${parsed_solution[0]})`),
+        targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[0]}])`),
+        targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[0]})`)
+    ])
+        .setTimeout(timeout)
+        .click();} //This one clicks X
+    {const targetPage = page;
+    await puppeteer.Locator.race([
+        targetPage.locator(`span:nth-of-type(${parsed_solution[1]})`),
+        targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[1]}])`),
+        targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[1]})`)
+    ])
+        .setTimeout(timeout)
+        .click();} //This one clicks Y
+    {const targetPage = page;
+    await puppeteer.Locator.race([
+        targetPage.locator(`span:nth-of-type(${parsed_solution[2]})`),
+        targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[2]}])`),
+        targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[2]})`)
+    ])
+        .setTimeout(timeout)
+        .click();} //This one clicks Z
     await page.screenshot({ path: screenshotPath });
     {
         const targetPage = page;
