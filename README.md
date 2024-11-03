@@ -4,10 +4,19 @@ This service can be used to obtain in a machine-readable format the daily challe
 It runs daily at 03:00±00:05 UTC on a GitHub Runner.
 
 ## How to use it
-### Get today's challenge
-Simply head on to [daily-turing.peiphy.xyz/today/END](http://daily-turing.peiphy.xyz/today)\
-There's three endpoints: criteria, verifiers, solution. Each one gives the information that their name implies, and can be accessed by replacing END in the URL: [daily-turing.peiphy.xyz/today/criteria](http://daily-turing.peiphy.xyz/today/criteria)
+### Endpoints
+There's 5 endpoints: 
+- criteria: This returns a JSON array with the criteria used for the selected challenge
+- verifiers: This returns a JSON array with the verifiers used for the selected challenge
+- solution: This returns a JSON array with the solution for the selected challenge
+- hash: This returns a string with the hash of today's challenge 
+- score: This returns a JSON array with the machine's score for the selected challenge
 
-### Get a previous day's challenge
+### Time selector
+#### Get today's challenge
+Simply head on to [daily-turing.peiphy.xyz/today/END](http://daily-turing.peiphy.xyz/today)\
+Replacing END with your desired endpoint 
+
+#### Get a previous day's challenge
 Simply head on to [daily-turing.peiphy.xyz/archive/YYYY-MM-DD/END](http://daily-turing.peiphy.xyz/archive/2024-11-03).
-The three endpoints are the same as today's challenge.
+Replacing END with your desired endpoint 
