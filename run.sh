@@ -1,4 +1,4 @@
-yesterday="$(date +'%m-%Y')-$(($(date +'%d')-1))"
+yesterday="$(date +'%Y-%m')-$(($(date +'%d')-1))"
 mv today "archive/$yesterday" -f
 echo "Moved yesterday's puzzle to $yesterday"
 mkdir today
