@@ -1,0 +1,21 @@
+on:
+  workflow_dispatch:
+
+
+jobs:
+  publish_page:
+    name: Publish the daily challenge to the GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false 
+        fetch-depth: 0 
+        ref: 'pages'
+    - name: Run main script
+      run: ./run.sh
+    - name: Commit & Push changes
+      uses: Andro999b/push@v1.3
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        branch: pages
