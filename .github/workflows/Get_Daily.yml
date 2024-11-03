@@ -29,6 +29,7 @@ jobs:
   publish_page:
     name: Publish the daily challenge to the GitHub Pages
     runs-on: ubuntu-latest
+    needs: get_daily
     steps:
     - uses: actions/checkout@v4
       with:
