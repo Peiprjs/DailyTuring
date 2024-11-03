@@ -3,9 +3,7 @@ const fs = require('node:fs');
 // const screenshotPath = "test.jpeg"; DEBUG
 //-----------------------------------Here starts the score thingy--------------------//
 const solution = JSON.parse(fs.readFileSync('today/solution', 'utf8'))
-console.log(solution);
 let parsed_solution =  [-3*solution[0]+16 ,-3*solution[1]+17 , -3*solution[2]+18];
-console.log(parsed_solution);
 //-----------------------------------Here starts the puppet chaos--------------------//
 (async () => {
     const browser = await puppeteer.launch({headless: 'new'});
@@ -82,7 +80,6 @@ console.log(parsed_solution);
             });
     }
     // This is the clickey part (Number 5s can go fuck themselves)
-    console.log("This is before click numbers");
     if (solution[0] == 5){
         {const targetPage = page;
         await puppeteer.Locator.race([
