@@ -83,31 +83,64 @@ console.log(parsed_solution);
             });
     }
     // This is the clickey part (Number 5s can go fuck themselves)
-    console.log("This is before click verify");
-    {const targetPage = page;
-    await puppeteer.Locator.race([
-        targetPage.locator(`span:nth-of-type(${parsed_solution[0]})`),
-        targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[0]}])`),
-        targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[0]})`)
-    ])
+    console.log("This is before click numbers");
+    if (solution[0] == 5){
+        {const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator(`div.codeInserter > span:nth-of-type(${parsed_solution[0]})`),
+            targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[0]}])`),
+            targetPage.locator(`:scope >>> div.codeInserter > span:nth-of-type(${parsed_solution[0]})`)
+        ])
         .setTimeout(timeout)
-        .click();} //This one clicks X
-    {const targetPage = page;
-    await puppeteer.Locator.race([
-        targetPage.locator(`span:nth-of-type(${parsed_solution[1]})`),
-        targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[1]}])`),
-        targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[1]})`)
-    ])
+        .click();}
+} else {
+        {const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator(`span:nth-of-type(${parsed_solution[0]})`),
+            targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[0]}])`),
+            targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[0]})`)
+        ])
         .setTimeout(timeout)
-        .click();} //This one clicks Y
-    {const targetPage = page;
-    await puppeteer.Locator.race([
-        targetPage.locator(`span:nth-of-type(${parsed_solution[2]})`),
-        targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[2]}])`),
-        targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[2]})`)
-    ])
+        .click();}
+    }//This one clicks X
+    if (solution[1] == 5){
+        {const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator(`div.codeInserter > span:nth-of-type(${parsed_solution[1]})`),
+            targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[1]}])`),
+            targetPage.locator(`:scope >>> div.codeInserter > span:nth-of-type(${parsed_solution[1]})`)
+        ])
         .setTimeout(timeout)
-        .click();} //This one clicks Z
+        .click();}
+} else {
+        {const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator(`span:nth-of-type(${parsed_solution[1]})`),
+            targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[1]}])`),
+            targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[1]})`)
+        ])
+        .setTimeout(timeout)
+        .click();}
+    }//This one clicks Y
+    if (solution[2] == 5){
+        {const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator(`div.codeInserter > span:nth-of-type(${parsed_solution[2]})`),
+            targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[2]}])`),
+            targetPage.locator(`:scope >>> div.codeInserter > span:nth-of-type(${parsed_solution[2]})`)
+        ])
+        .setTimeout(timeout)
+        .click();}
+} else {
+        {const targetPage = page;
+        await puppeteer.Locator.race([
+            targetPage.locator(`span:nth-of-type(${parsed_solution[2]})`),
+            targetPage.locator(`::-p-xpath(//*[@id=\\"root\\"]/div/div[2]/div[3]/span[${parsed_solution[2]}])`),
+            targetPage.locator(`:scope >>> span:nth-of-type(${parsed_solution[2]})`)
+        ])
+        .setTimeout(timeout)
+        .click();}
+    }//This one clicks Z
     await page.screenshot({ path: screenshotPath });
     {
         const targetPage = page;
