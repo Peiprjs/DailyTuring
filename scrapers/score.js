@@ -2,7 +2,8 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 const fs = require('node:fs');
 const screenshotPath = "test.jpeg";
 //-----------------------------------Here starts the score thingy--------------------//
-const solution = JSON.parse(fs.readFileSync('../today/solution', 'utf8'))
+//const solution = JSON.parse(fs.readFileSync('../today/solution', 'utf8'))
+const solution = [5, 5, 5]
 console.log(solution);
 let parsed_solution =  [-3*solution[0]+16 ,-3*solution[1]+17 , -3*solution[2]+18];
 console.log(parsed_solution);
@@ -81,7 +82,7 @@ console.log(parsed_solution);
               },
             });
     }
-    // This is the clickey part
+    // This is the clickey part (Number 5s can go fuck themselves)
     console.log("This is before click verify");
     {const targetPage = page;
     await puppeteer.Locator.race([
@@ -125,7 +126,7 @@ console.log(parsed_solution);
               },
             });
     }
-
+    await page.screenshot({ path: screenshotPath });
     await browser.close();
 
 })().catch(err => {
