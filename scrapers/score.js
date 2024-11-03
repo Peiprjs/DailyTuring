@@ -49,7 +49,6 @@ console.log(parsed_solution);
     }
     {
         const targetPage = page;
-        console.log("Line 52")
         await puppeteer.Locator.race([
             targetPage.locator('::-p-aria(GENERATE)'),
             targetPage.locator('div.content > input'),
