@@ -1,7 +1,7 @@
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const { puppeteer, launchBrowser } = require('./browser');
 
 (async () => {
-    const browser = await puppeteer.launch({headless: 'new'});
+    const browser = await launchBrowser();
     const page = await browser.newPage();
     const timeout = 5000;
     page.setDefaultTimeout(timeout);

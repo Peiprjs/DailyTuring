@@ -34,8 +34,19 @@ jobs:
         persist-credentials: false 
         fetch-depth: 0 
         ref: 'pages'
+    - uses: actions/checkout@v6
+      with:
+        path: main-src
+        fetch-depth: 1
+        ref: 'main'
+    - name: Setup Node
+      uses: actions/setup-node@v6.3.0
     - name: Run main script
       run: ./run.sh
+    - name: Generate calendar landing page
+      run: node main-src/scripts/generate_calendar.js
+    - name: Cleanup helper checkout
+      run: rm -rf main-src
     - name: Commit & Push changes
       uses: Andro999b/push@v1.3
       with:

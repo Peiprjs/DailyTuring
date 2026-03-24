@@ -1,24 +1,52 @@
-yesterday="$(date +'%Y-%m')-$(($(date +'%d')-1))"
-mv today "archive/$yesterday" -f
-echo "Moved yesterday's puzzle to $yesterday"
-mkdir today
+#!/usr/bin/env bash
+set -euo pipefail
+
+yesterday="$(date -u -d 'yesterday' +'%Y-%m-%d')"
+tmp_today_dir="$(mktemp -d)"
+
+cleanup() {
+  rm -rf "$tmp_today_dir"
+}
+trap cleanup EXIT
+
+if [ -d "today" ]; then
+  mkdir -p "archive/$yesterday"
+  shopt -s dotglob nullglob
+  for entry in today/*; do
+    mv -f "$entry" "archive/$yesterday/"
+  done
+  shopt -u dotglob nullglob
+  rmdir today || true
+  echo "Moved yesterday's puzzle to $yesterday"
+fi
+
+mkdir -p today
+
+run_scraper() {
+  local label="$1"
+  local script="$2"
+  local target="$3"
+  local tmp_file="$tmp_today_dir/$target"
+
+  echo "Getting $label"
+  node "scrapers/$script" > "$tmp_file"
+
+  if [ ! -s "$tmp_file" ]; then
+    echo "Error: $label output is empty." >&2
+    exit 1
+  fi
+
+  mv "$tmp_file" "today/$target"
+  echo "$label run successfully"
+}
+
 #-------------------------------------#
-echo "Getting Criteria"
-node scrapers/criteria.js> today/criteria
-echo "Criteria run successfully"
+run_scraper "Criteria" "criteria.js" "criteria"
 #-------------------------------------#
-echo "Getting Solution"
-node scrapers/solution.js> today/solution
-echo "Solution run successfully"
+run_scraper "Solution" "solution.js" "solution"
 #-------------------------------------#
-echo "Getting Verifiers"
-node scrapers/verifiers.js> today/verifiers
-echo "Verifiers run successfully"
+run_scraper "Verifiers" "verifiers.js" "verifiers"
 #-------------------------------------#
-echo "Getting Hash"
-node scrapers/hash.js> today/hash
-echo "Hash run successfully"
+run_scraper "Hash" "hash.js" "hash"
 #-------------------------------------#
-echo "Getting Score"
-node scrapers/score.js> today/score
-echo "Score run successfully"
+run_scraper "Score" "score.js" "score"

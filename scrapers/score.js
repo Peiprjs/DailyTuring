@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const { puppeteer, launchBrowser } = require('./browser');
 const fs = require('node:fs');
 // const screenshotPath = "test.jpeg"; DEBUG
 //-----------------------------------Here starts the score thingy--------------------//
@@ -6,7 +6,7 @@ const solution = JSON.parse(fs.readFileSync('today/solution', 'utf8'))
 let parsed_solution =  [-3*solution[0]+16 ,-3*solution[1]+17 , -3*solution[2]+18];
 //-----------------------------------Here starts the puppet chaos--------------------//
 (async () => {
-    const browser = await puppeteer.launch({headless: 'new'});
+    const browser = await launchBrowser();
     const page = await browser.newPage();
     const timeout = 5000;
     page.setDefaultTimeout(timeout);
